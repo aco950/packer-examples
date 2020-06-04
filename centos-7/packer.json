@@ -1,0 +1,42 @@
+{
+  "builders": [
+    {
+      "type": "qemu",
+      "accelerator": "kvm",
+      "iso_url": "http://kvm-02/CentOS-7-x86_64-Minimal-2003.iso",
+      "iso_checksum": "659691c28a0e672558b003d223f83938f254b39875ee7559d1a4a14c79173193",
+      "iso_checksum_type": "sha256",
+      "headless": "true",
+      "vnc_port_min": "5910",
+      "vnc_port_max": "5910",
+      "ssh_host": "127.0.0.1",
+      "ssh_username": "root",
+      "ssh_password": "passwordfortestingonly",
+      "ssh_timeout": "2m",
+      "pause_before_connecting": "5m",
+      "disk_size": "8192M",
+      "format": "qcow2",
+      "memory": "2048",
+      "vm_name": "test-01.qcow2",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "cpus": "2",
+      "output_directory": "/mnt/packer/test-01",
+      "http_directory": "/mnt/toshiba/iso",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<tab> inst.sshd inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/anaconda-ks.cfg<enter><wait>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "yum -y install epel-release",
+        "yum -y update"
+      ]
+    }
+  ]
+}
+
