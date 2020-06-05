@@ -29,14 +29,15 @@ Things to keep in mind:
   environment. 
 
   Since I'm running yum commands inside the shell provisioner (near the 
-  end of `packer.json`, the yum commands will only work inside the 
+  end of `packer.json`), the yum commands will only work inside the 
   post-installation environment, not during the chroot/installation 
   environment.
 
-  Setting this value too low will result in Packer connecting too soon - 
-  to the chroot/installation environment instead of the post-installation 
-  environment. The setting that worked for me was "8m", but may need to
-  be adjusted in different environments.
+  Setting the `pause_before_connecting` value too low will result in 
+  Packer connecting too soon (i.e., to the chroot/installation environment 
+  instead of the post-installation environment). The setting that worked 
+  for me was "8m", but this may need to be adjusted to account for 
+  different environments.
 
-* In `run.sh`, set $workdir to match your environment.
+* In `run.sh`, set `$workdir` to match your environment.
 
