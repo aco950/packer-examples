@@ -13,7 +13,7 @@ Pre-requisites:
 * Packer
 * An HTTP directory index configured to serve kickstart files.
 
-Run as follows (add additional flags as needed):
+Run as follows:
 
 ```sh
 $ ./run.sh
